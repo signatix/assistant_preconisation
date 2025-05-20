@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="shortcut icon" href="https://signatix.fr/img/favicon/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <title>Assistant de Préconisation Signatix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,12 +17,12 @@
       Sélectionnez l'usage final attendu pour découvrir les supports d'impression recommandés. Pour une expérience optimale, connectez-vous à votre compte Signatix.fr
     </p>
     <form id="precoForm" class="mb-4 w-full">
-      <select id="usageSelect" class="w-full p-3 rounded-xl border border-[#e6007e] text-base focus:ring-2 focus:ring-[#e6007e]" required>
+      <select id="usageSelect" class="w-full p-3 rounded-xl border border-[#e6007e] text-base focus:ring-2 focus:ring-[#00adee]" required>
         <option value="">Sélectionnez un usage</option>
       </select>
       <button
         type="submit"
-        class="mt-4 w-full bg-[#e6007e] text-white font-bold rounded-xl p-3 shadow hover:bg-[#e6007e] transition"
+        class="mt-4 w-full bg-[#e6007e] text-white font-bold rounded-xl p-3 shadow hover:bg-[#00adee] transition"
       >Afficher les préconisations</button>
     </form>
     <div id="resultat" class="w-full"></div>
@@ -231,11 +230,11 @@
         <h2 class="text-xl font-semibold mb-2 text-[#e6007e]">Supports recommandés :</h2>
         <ul class="space-y-4">
           ${recommandations[usage].map(rec => `
-            <li class="border-b border-[#e6007e] pb-2">
+            <li class="border-b border-[#00adee] pb-2">
               <span class="font-bold text-[#e6007e]">${rec.nom}</span><br>
               <span class="text-[#232323]">À partir de : ${rec.prix}</span><br>
               <span class="text-gray-600">Délai de production estimé : ${rec.delai}</span><br>
-              <a href="${rec.url}" class="text-[#e6007e] underline mt-1 inline-block hover:text-[#e6007e] transition" target="_blank" rel="noopener noreferrer">
+              <a href="${rec.url}" class="text-[#00adee] underline mt-1 inline-block hover:text-[#e6007e] transition" target="_blank" rel="noopener noreferrer">
                 Voir la fiche produit
               </a>
             </li>
