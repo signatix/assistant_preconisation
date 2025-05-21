@@ -144,3 +144,15 @@ button:hover {
     font-size: 1.3rem;
   }
 }
+
+/* --- Personnalisation de la couleur de surbrillance des options sélectionnées --- */
+select option:checked {
+  background-color: #e6007e; /* Couleur rose Signatix */
+  color: #fff;
+}
+
+/* Survol option dans la liste déroulante */
+select option:hover {
+  background-color: #e6007e;
+  color: #fff;
+}
