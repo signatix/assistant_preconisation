@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="shortcut icon" href="https://signatix.fr/img/favicon/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <title>Assistant de Préconisation Signatix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Tailwind CDN pour le style -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo_signatix.jpg">
 </head>
-<body class="bg-[#f5f6fa] min-h-screen flex items-center justify-center p-4">
-  <div class="bg-white rounded-2xl shadow-xl p-6 max-w-lg w-full border-4 border-[#e6007e] flex flex-col items-center">
+<body>
+  <div class="container">
     <!-- Logo Signatix -->
-    <img src="https://signatix.fr/img/favicon/android-icon-192x192.png" alt="Logo Signatix" class="w-20 h-20 mb-2 rounded-full shadow" style="object-fit:contain;" />
-    <h1 class="text-2xl font-bold mb-2 text-center text-[#e6007e]">Adéquation Usage / Produit</h1>
-    <p class="text-base mb-6 text-center text-[#232323]">
-      Sélectionnez l'usage final attendu pour découvrir les supports d'impression recommandés. Pour une expérience optimale, connectez-vous à votre compte Signatix.fr
+    <img src="https://signatix.fr/img/favicon/android-icon-192x192.png" alt="Logo Signatix" class="logo" />
+    <h1 class="title">Adéquation Usage / Produit</h1>
+    <p class="subtitle">
+      Sélectionnez l'usage final attendu pour découvrir les supports d'impression recommandés.<br>
+      <span style="font-size:0.95em;color:#888;">Pour une expérience optimale, connectez-vous à votre compte Signatix.fr</span>
     </p>
-    <form id="precoForm" class="mb-4 w-full">
-      <select id="usageSelect" class="w-full p-3 rounded-xl border border-[#e6007e] text-base focus:ring-2 focus:ring-[#00adee]" required>
+    <form id="precoForm">
+      <select id="usageSelect" required>
         <option value="">Sélectionnez un usage</option>
       </select>
-      <button
-        type="submit"
-        class="mt-4 w-full bg-[#e6007e] text-white font-bold rounded-xl p-3 shadow hover:bg-[#e6007e] transition"
-      >Afficher les préconisations</button>
+      <button type="submit">Afficher les préconisations</button>
     </form>
-    <div id="resultat" class="w-full"></div>
+    <div id="resultat"></div>
   </div>
   <script>
     // Usages et recommandations extraits automatiquement (bloc complet)
     const recommandations = {
-  "Vitrine": [
+        "Vitrine": [
     { nom: "Vinyle transparent brillant", prix: "7.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/adhesifs?id=8" },
+    { nom: "Vinyle polymère", prix: "7.62 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=9" },
     { nom: "Vinyle Microperforé", prix: "7.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=12" },
     { nom: "Vinyle monomère colle renforcée", prix: "9.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=51" },
     { nom: "Vinyle polymère super tack", prix: "13.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=54" },
@@ -43,33 +40,34 @@
     { nom: "Dépoli polymère Air Free", prix: "14.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=85" },
     { nom: "Microperforé pose intérieur", prix: "24.8 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/adhesifs?id=87" },
     { nom: "Vinyle ultra transparent", prix: "9.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/adhesifs?id=88" },
+    { nom: "Micro ventouse Transparent", prix: "8.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/decoration?id=121" },
     { nom: "Dépoli polymère Air Free", prix: "14.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/decoration?id=126" }
   ],
-  "PLV": [
+  "Plv": [
+    { nom: "Vinyle polymère", prix: "7.62 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=9" },
     { nom: "Film PVC 300 microns", prix: "7.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/affiches-films?id=16" },
-    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" },
+    { nom: "Bâche 510g enduite", prix: "6.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/baches-toiles?id=20" },
     { nom: "Panneau PVC 3mm", prix: "12.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=27" },
     { nom: "Panneau PVC 5mm", prix: "16.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=28" },
-    { nom: "Panneau PVC 10mm", prix: "33.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/supports-rigides?id=29" }
+    { nom: "Panneau PVC 10mm", prix: "33.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/supports-rigides?id=29" },
+    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" }
   ],
   "Signalétique intérieure": [
-    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" },
     { nom: "Panneau PVC 3mm", prix: "12.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=27" },
     { nom: "Panneau PVC 5mm", prix: "16.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=28" },
     { nom: "Panneau PVC 10mm", prix: "33.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/supports-rigides?id=29" },
     { nom: "Panneau Alu Bond 3mm", prix: "30.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=30" },
     { nom: "Plexi 5mm ", prix: "62.99 € HT/m²", delai: "6 jours", url: "https://signatix.fr/supports/supports-rigides?id=42" },
-    { nom: "Plexi 8mm", prix: "98.0 € HT/m²", delai: "6 jours", url: "https://signatix.fr/supports/supports-rigides?id=91" },
-    { nom: "Adhésif polymère colle renforcée enlevable", prix: "9.99 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=136" }
+    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" },
+    { nom: "Plexi 8mm", prix: "98.0 € HT/m²", delai: "6 jours", url: "https://signatix.fr/supports/supports-rigides?id=91" }
   ],
   "Signalétique extérieure": [
-    { nom: "Vinyle polymère", prix: "7.62 € HT/m²", delai: "3 jours", url: "https://signatix.fr/supports/adhesifs?id=9" },
-    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" },
     { nom: "Panneau PVC 3mm", prix: "12.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=27" },
     { nom: "Panneau PVC 5mm", prix: "16.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=28" },
     { nom: "Panneau PVC 10mm", prix: "33.99 € HT/m²", delai: "5 jours", url: "https://signatix.fr/supports/supports-rigides?id=29" },
     { nom: "Panneau Alu Bond 3mm", prix: "30.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=30" },
     { nom: "Plexi 5mm ", prix: "62.99 € HT/m²", delai: "6 jours", url: "https://signatix.fr/supports/supports-rigides?id=42" },
+    { nom: "Panneau PVC 2mm", prix: "8.55 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/supports-rigides?id=52" },
     { nom: "Plexi 8mm", prix: "98.0 € HT/m²", delai: "6 jours", url: "https://signatix.fr/supports/supports-rigides?id=91" }
   ],
   "Véhicule": [
@@ -204,7 +202,7 @@
     { nom: "Adhésif polymère 100 % opaque épais", prix: "15.99 € HT/m²", delai: "4 jours", url: "https://signatix.fr/supports/adhesifs?id=138" }
   ]
 };
-
+    
     // Génération dynamique des usages dans le select
     const usages = Object.keys(recommandations);
     const usageSelect = document.getElementById("usageSelect");
@@ -222,18 +220,18 @@
       const resultatDiv = document.getElementById("resultat");
       resultatDiv.innerHTML = "";
       if (!usage || !recommandations[usage] || recommandations[usage].length === 0) {
-        resultatDiv.innerHTML = '<p class="text-red-500 mt-4">Aucun support recommandé trouvé pour cet usage.</p>';
+        resultatDiv.innerHTML = '<p class="text-red-500" style="margin-top:1em;">Aucun support recommandé trouvé pour cet usage.</p>';
         return;
       }
       const html = `
-        <h2 class="text-xl font-semibold mb-2 text-[#e6007e]">Supports recommandés :</h2>
-        <ul class="space-y-4">
+        <h2 class="subtitle" style="font-size:1.2rem;color:#e6007e;font-weight:bold;margin-bottom:0.8em;">Supports recommandés :</h2>
+        <ul class="support-list">
           ${recommandations[usage].map(rec => `
-            <li class="border-b border-[#00adee] pb-2">
-              <span class="font-bold text-[#e6007e]">${rec.nom}</span><br>
-              <span class="text-[#232323]">À partir de : ${rec.prix}</span><br>
-              <span class="text-gray-600">Délai de production estimé : ${rec.delai}</span><br>
-              <a href="${rec.url}" class="text-[#e6007e] underline mt-1 inline-block hover:text-[#e6007e] transition" target="_blank" rel="noopener noreferrer">
+            <li>
+              <span class="support-title">${rec.nom}</span><br>
+              <span class="support-price">À partir de : ${rec.prix}</span><br>
+              <span class="support-delay">Délai de production estimé : ${rec.delai}</span><br>
+              <a href="${rec.url}" class="support-link" target="_blank" rel="noopener noreferrer">
                 Voir la fiche produit
               </a>
             </li>
