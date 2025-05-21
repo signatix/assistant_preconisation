@@ -144,36 +144,3 @@ button:hover {
     font-size: 1.3rem;
   }
 }
-
-/* -----------------------------
-   Personnalisation <select>
-   ----------------------------- */
-
-/* Couleur d'arrière‑plan et texte de l'option actuellement sélectionnée
-   quand la liste N'EST PAS ouverte  */
-select {
-  color: inherit;            /* évite que le texte reste rose après fermeture */
-}
-
-/* Chrome / Edge / Safari :
-   on remplit l'option survolée OU sélectionnée avec un énorme box‑shadow
-   car le background est géré par le système d’exploitation. */
-select option:hover,
-select option:focus,
-select option:checked {
-  /* fallback Firefox & autres */
-  background-color: #e6007e;
-  color: #fff;
-  /* Technique « encore tout » pour Chromium */
-  -webkit-box-shadow: 0 0 0 100vmax #e6007e inset;
-  box-shadow: 0 0 0 100vmax #e6007e inset;
-}
-
-/* Désactive le couleur par défaut quand le <select> reçoit le focus */
-select:focus option:checked {
-  color: #fff;
-}
-
-/* -----------------------------------
-   Fin personnalisation <select>
-   ----------------------------------- */
